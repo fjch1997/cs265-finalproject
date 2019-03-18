@@ -1,0 +1,91 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch test",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/mnt/c/Users/Lloyd.AD-LLOYD97/Source/Repos/cs265-finalproject/test",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "/mnt/c/Users/Lloyd.AD-LLOYD97/Source/Repos/cs265-finalproject",
+            "environment": [],
+            "externalConsole": true,
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "C:\\Windows\\sysnative\\bash.exe",
+                "pipeArgs": [
+                    "-c"
+                ],
+                "pipeCwd": ""
+            },
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "sourceFileMap": {
+                "/mnt/c": "c:\\"
+            },
+            "preLaunchTask": "Build test"
+        },
+        {
+            "name": "Attach getNumberOfFatalities",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "/mnt/c/Users/Lloyd.AD-LLOYD97/Source/Repos/cs265-finalproject/getNumberOfFatalities",
+            "processId": "${command:pickRemoteProcess}",
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "C:\\Windows\\sysnative\\bash.exe",
+                "pipeArgs": [
+                    "-c"
+                ],
+                "pipeCwd": ""
+            },
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "sourceFileMap": {
+                "/mnt/c": "c:\\"
+            }
+        },
+        {
+            "name": "Attach getTotalFlightHours",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "/mnt/c/Users/Lloyd.AD-LLOYD97/Source/Repos/cs265-finalproject/getTotalFlightHours",
+            "processId": "${command:pickRemoteProcess}",
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "C:\\Windows\\sysnative\\bash.exe",
+                "pipeArgs": [
+                    "-c"
+                ],
+                "pipeCwd": ""
+            },
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "sourceFileMap": {
+                "/mnt/c": "c:\\"
+            }
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+# This is not a script
+# These are the time range for Jan-Dec 2018
+
+./getOpenSkyData.sh 1517443200 1519862399
+./getOpenSkyData.sh 1519862400 1522540799
+./getOpenSkyData.sh 1522540800 1525132799
+./getOpenSkyData.sh 1525132800 1527811199
+./getOpenSkyData.sh 1527811200 1530403199
+./getOpenSkyData.sh 1530403200 1533081599
+./getOpenSkyData.sh 1533081600 1535759999
+./getOpenSkyData.sh 1535760000 1538351999
+./getOpenSkyData.sh 1538352000 1541030399
+./getOpenSkyData.sh 1541030400 1543622399
+./getOpenSkyData.sh 1543622400 1546300799

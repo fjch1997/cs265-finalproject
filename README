@@ -1,0 +1,40 @@
+# Final Result
+
+Based on the data in the year 2018, for night flight in a reciprocating engine aircraft, there are 36 fatalities. The total flight hour is 3,137,454. The fatality rate of  is 1.1474 per 100,000 flight hours. This number is higher than actual due to the fact ADS-B equipage is not required before 2020. However, it is surprisingly similar to that of overall day and night flights.
+
+# Executables
+
+## run.sh
+An interactive way to run the programs.
+
+## getOpenSkyData.sh
+Usage: getOpenSkyData.sh startTime endTime
+
+This is used to download track data from OpenSky's shell. Start and end times are in unix timestamp (number of seconds since Jan 1 1970 0:00UTC). It will prompt for OpenSky password which I sent in an email.
+
+Note that due to the limitation of the OpenSky's shell (the only way of access), it only downloads data at around 0.5Mbps. Running multiple instances at the same time can speed up the process.
+
+A month's data is around 3.5GB which takes about 5 hours to download. Concurrently running 11 instances of getOpenSkyData.sh will raise out of memory on OpenSky's server after about 30 minutes. Concurrently running 4 instances is tested to work.
+
+Data for 2018/01/01 to 2018/12/31 (49.9GB) is available for download at https://home.lloyd97.com/files/OpenSky
+
+## getNumberOfFatalities
+Usage: getNumberOfFatalities startTime endTime
+
+Start and end times are in unix timestamp (number of seconds since Jan 1 1970 0:00UTC).
+
+This program uses NTSB_Since_1962.txt (an index of accidents, no detail) to find the accident number for the accidents meeting our criteria. It then accesses NTSB's database to download the accident report. If from the report, "Condition of light" is Night or Night/Dark, it counts the number of fatality for that accident.
+
+## getTotalFlightHours
+Usage: getNumberOfFatalities startTime endTime pathToOpenSkyTrackFiles
+
+This program analyzes the OpenSky data and compute the total flight hours. It uses an FAA registry (FAA_Registry_2017.txt) to see if the aircraft meets our criteria.
+If multiple OpenSky files are given, it will process those files concurrently. 
+It takes about 1 hour to process a single file containing a month's of data on a computer with an i7-6700K@4.00GHz.
+
+# Testing
+Unit tests (tests.cc) are written to verify the sunset/sunrise time algorithms and that the parser parses the data correctly.
+
+To run these tests, 
+
+make run-test

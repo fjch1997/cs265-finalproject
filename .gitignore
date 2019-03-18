@@ -1,0 +1,8 @@
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+data/openSkyTracks*
+/.vs
+FAA_Registry_2017.txt
