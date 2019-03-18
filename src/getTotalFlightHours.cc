@@ -7,6 +7,7 @@
 #include <ctime>
 #include <unordered_set>
 #include <thread>
+#include <future>
 #include <vector>
 #include "myHelpers.h"
 #include "SunSet.h"
@@ -19,11 +20,10 @@ struct RunArguments
     string *fileName;
     int startTime;
     int endTime;
-    long *totalHours;
     Jf955FinalProject::OpenSkyParser *parser;
 };
 
-void run(RunArguments args);
+long run(RunArguments args);
 
 int main(int argc, char *argv[])
 {
@@ -56,31 +56,28 @@ int main(int argc, char *argv[])
 
     Jf955FinalProject::OpenSkyParser parser;
     parser.loadAcceptableAircraftIcao24();
-    long totalHours = 0;
-
-    auto threads = new thread *[openSkyFileNames.size()];
-
-    for (int i = 0; i < openSkyFileNames.size(); i++)
+    auto length = openSkyFileNames.size();
+    auto threads = new future<long>[length];
+    for (int i = 0; i < length; i++)
     {
         RunArguments args;
         args.startTime = startTime;
         args.endTime = endTime;
-        args.totalHours = &totalHours;
         args.parser = &parser;
         args.fileName = &openSkyFileNames[i];
-        threads[i] = new thread(run, args);
+        threads[i] = std::async(run, args);
     }
-    for (int i = 0; i < openSkyFileNames.size(); i++)
+    long totalHours = 0;
+    for (int i = 0; i < length; i++)
     {
-        threads[i]->join();
-        delete threads[i];
+        totalHours += threads[i].get();
     }
-    delete threads;
+    delete[] threads;
     cout << totalHours;
 }
 
-void run(RunArguments args)
+long run(RunArguments args)
 {
-    long hours = args.parser->getTotalFlightHours(*(args.fileName), args.startTime, args.endTime);
-    *(args.totalHours) += hours;
+    auto result = args.parser->getTotalFlightHours(*args.fileName, args.startTime, args.endTime);
+    return result;
 }

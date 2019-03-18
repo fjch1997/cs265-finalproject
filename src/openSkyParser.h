@@ -14,8 +14,6 @@ private:
   std::unordered_set<std::string> codes;
 
 public:
-  OpenSkyParser(/* args */);
-  ~OpenSkyParser();
   void loadAcceptableAircraftIcao24();
   long getTotalFlightHours(std::string openSkyFileName, int startTime, int endTime);
   bool isNight(time_t timeLong, SunSet *sunset, double lon, double lat);
