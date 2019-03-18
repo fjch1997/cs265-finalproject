@@ -1,4 +1,7 @@
-build : getNumberOfFatalities getTotalFlightHours test
+build : getNumberOfFatalities getTotalFlightHours test FAA_Registry_2017
+
+FAA_Registry_2017 : data/FAA_Registry_2017.zip
+	unzip data/FAA_Registry_2017.zip -d data
 
 run-test : test
 	./test
@@ -13,4 +16,4 @@ getTotalFlightHours : src/getTotalFlightHours.cc src/myHelpers.cc src/SunSet.cpp
 	g++ -o getTotalFlightHours src/SunSet.cpp src/getTotalFlightHours.cc src/myHelpers.cc src/openSkyParser.cc -pthread
 
 clean :
-	rm getNumberOfFatalities getTotalFlightHours test
+	rm getNumberOfFatalities getTotalFlightHours test data/FAA_Registry_2017.txt
