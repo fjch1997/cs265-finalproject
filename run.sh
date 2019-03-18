@@ -25,6 +25,6 @@ totalHours=$( ./getTotalFlightHours $startTime $endTime $files)
 
 echo "Total hours flown is $totalHours"
 if [ ! $totalHours -eq 0 ]; then
-  rate=$(echo "$numFatalities / $totalHours * 100000" | bc -l)
+  rate=$(echo "$numFatalities / $totalHours * 60 * 60 * 100000" | bc -l)
   echo "This gives a fatality rate of $rate per 100,000 hours."
 fi
